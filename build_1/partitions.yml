@@ -1,0 +1,36 @@
+app:
+  address: 0x0
+  end_address: 0xf5000
+  region: flash_primary
+  size: 0xf5000
+settings_storage:
+  address: 0xfe000
+  end_address: 0x100000
+  placement:
+    before:
+    - end
+  region: flash_primary
+  size: 0x2000
+sram_primary:
+  address: 0x20000000
+  end_address: 0x20040000
+  region: sram_primary
+  size: 0x40000
+zboss_nvram:
+  address: 0xf5000
+  end_address: 0xfd000
+  placement:
+    after:
+    - app
+    align:
+      start: 0x1000
+  region: flash_primary
+  size: 0x8000
+zboss_product_config:
+  address: 0xfd000
+  end_address: 0xfe000
+  placement:
+    after:
+    - zboss_nvram
+  region: flash_primary
+  size: 0x1000

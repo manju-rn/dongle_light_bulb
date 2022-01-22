@@ -1,0 +1,6 @@
+zboss_nvram:
+  placement: {after: [app], align: {start: 0x1000}}
+  size: 0x8000
+zboss_product_config:
+  placement: {after: [zboss_nvram]}
+  size: 0x1000

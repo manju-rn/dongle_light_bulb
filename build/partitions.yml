@@ -1,0 +1,54 @@
+EMPTY_0:
+  address: 0xe0000
+  end_address: 0x100000
+  region: flash_primary
+  size: 0x20000
+EMPTY_1:
+  address: 0x20000000
+  end_address: 0x20000400
+  region: sram_primary
+  size: 0x400
+app:
+  address: 0x1000
+  end_address: 0xd5000
+  region: flash_primary
+  size: 0xd4000
+nrf5_mbr:
+  address: 0x0
+  end_address: 0x1000
+  placement:
+    after:
+    - start
+  region: flash_primary
+  size: 0x1000
+settings_storage:
+  address: 0xde000
+  end_address: 0xe0000
+  placement:
+    before:
+    - end
+  region: flash_primary
+  size: 0x2000
+sram_primary:
+  address: 0x20000400
+  end_address: 0x20040000
+  region: sram_primary
+  size: 0x3fc00
+zboss_nvram:
+  address: 0xd5000
+  end_address: 0xdd000
+  placement:
+    after:
+    - app
+    align:
+      start: 0x1000
+  region: flash_primary
+  size: 0x8000
+zboss_product_config:
+  address: 0xdd000
+  end_address: 0xde000
+  placement:
+    after:
+    - zboss_nvram
+  region: flash_primary
+  size: 0x1000

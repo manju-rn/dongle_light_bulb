@@ -1,0 +1,5 @@
+osource "e:/nRF/projects/manju_light_bulb/boards/shields/*/Kconfig.defconfig"
+osource "e:/nRF/projects/manju_light_switch/boards/shields/*/Kconfig.defconfig"
+osource "e:/nRF/projects/light_switch_dongle/boards/shields/*/Kconfig.defconfig"
+osource "e:/nRF/projects/dongle_light_bulb/boards/shields/*/Kconfig.defconfig"
+osource "E:/nRF/v1.7.1/nrf/boards/shields/*/Kconfig.defconfig"
