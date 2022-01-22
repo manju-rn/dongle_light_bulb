@@ -67,7 +67,7 @@
 /* Type of power sources available for the device.
  * For possible values see section 3.2.2.2.8 of ZCL specification.
  */
-#define BULB_INIT_BASIC_POWER_SOURCE    ZB_ZCL_BASIC_POWER_SOURCE_DC_SOURCE
+#define BULB_INIT_BASIC_POWER_SOURCE    ZB_ZCL_BASIC_POWER_SOURCE_BATTERY
 
 /* Describes the physical location of the device (16 bytes).
  * May be modified during commisioning process.
@@ -117,9 +117,13 @@
 /* Led PWM period, calculated for 50 Hz signal - in microseconds. */
 #define LED_PWM_PERIOD_US               (USEC_PER_SEC / 50U)
 
-#ifndef ZB_ROUTER_ROLE
-#error Define ZB_ROUTER_ROLE to compile router source code.
+#ifndef ZB_ED_ROLE
+#error Define ZB_END_DEVICE_ROLE to compile enddevice source code.
 #endif
+
+// #ifndef ZB_ROUTER_ROLE
+// #error Define ZB_ROUTER_ROLE to compile router source code.
+// #endif
 
 // Manju - Declare the On_off_set_value function
 static void on_off_set_value(zb_bool_t on, zb_uint8_t endpoint_invoked);
