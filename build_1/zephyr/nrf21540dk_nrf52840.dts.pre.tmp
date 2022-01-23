@@ -615,9 +615,13 @@ fem_spi: &spi3 {
   pwm_led3: pwm_led_3 {
    pwms = <&pwm0 16>;
   };
+  pwm_led4: pwm_led_4 {
+   pwms = <&pwm0 02>;
+  };
  };
 };
 &pwm0 {
  ch1-pin = <16>;
  ch1-inverted;
+ ch2-pin = <02>;
 };

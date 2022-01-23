@@ -20,8 +20,8 @@ APPLICATION_BINARY_DIR:PATH=E:/nRF/projects/dongle_light_bulb/build
 //Application Source Directory
 APPLICATION_SOURCE_DIR:PATH=E:/nRF/projects/dongle_light_bulb
 
-//No help, variable specified on the command line.
-BOARD:UNINITIALIZED=nrf52840dongle_nrf52840
+//Selected board
+BOARD:STRING=nrf52840dongle_nrf52840
 
 //Path to a file.
 BOARD_DIR:PATH=E:/nRF/v1.7.1/zephyr/boards/arm/nrf52840dongle_nrf52840
@@ -115,8 +115,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//C compiler
-CMAKE_C_COMPILER:STRING=E:/nRF/v1.7.1/toolchain/opt/bin/arm-none-eabi-gcc.exe
+//Path to a program.
+CMAKE_C_COMPILER:FILEPATH=E:/nRF/v1.7.1/toolchain/opt/bin/arm-none-eabi-gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -432,8 +432,6 @@ CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_C_COMPILER
-CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER_AR
 CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB

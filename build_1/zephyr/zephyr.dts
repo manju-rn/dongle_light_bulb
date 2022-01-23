@@ -200,6 +200,7 @@
 			ch0-inverted;
 			ch1-pin = < 0x10 >;
 			ch1-inverted;
+			ch2-pin = < 0x2 >;
 			phandle = < 0x4 >;
 		};
 		pwm1: pwm@40021000 {
@@ -481,6 +482,9 @@
 		};
 		pwm_led3: pwm_led_3 {
 			pwms = < &pwm0 0x10 >;
+		};
+		pwm_led4: pwm_led_4 {
+			pwms = < &pwm0 0x2 >;
 		};
 	};
 	buttons {

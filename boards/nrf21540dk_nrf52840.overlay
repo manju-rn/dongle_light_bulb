@@ -13,10 +13,16 @@
 		pwm_led3: pwm_led_3 {
 			pwms = <&pwm0 16>;
 		};
+		// Manju - GPIO Port 0.02 in NRF52840
+		pwm_led4: pwm_led_4 {
+			pwms = <&pwm0 02>;
+		};		
 	};
 };
 
 &pwm0 {
 	ch1-pin = <16>;
 	ch1-inverted;
+	// Manju - Definition for the GPIO 0.02 in NRF52840
+	ch2-pin = <02>;	
 };

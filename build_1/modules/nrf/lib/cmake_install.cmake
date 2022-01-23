@@ -44,6 +44,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/dk_buttons_and_leds/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/multithreading_lock/cmake_install.cmake")
 endif()
 

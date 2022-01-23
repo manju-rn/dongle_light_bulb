@@ -44,6 +44,9 @@
 // Manju - Additional Endpoint for GPIO P0.02
 #define HA_DIMMABLE_LIGHT_ENDPOINT_GPIO      11
 
+/* Switch endpoint */
+#define HA_BUTTON_ENDPOINT      12
+
 /* Version of the application software (1 byte). */
 #define BULB_INIT_BASIC_APP_VERSION     01
 
@@ -57,7 +60,7 @@
 #define BULB_INIT_BASIC_MANUF_NAME      "DongleNordic"
 
 /* Model number assigned by manufacturer (32-bytes long string). */
-#define BULB_INIT_BASIC_MODEL_ID        "DongleLight"
+#define BULB_INIT_BASIC_MODEL_ID        "DongleLightSwitch"
 
 /* First 8 bytes specify the date of manufacturer of the device
  * in ISO 8601 format (YYYYMMDD). The rest (8 bytes) are manufacturer specific.
@@ -127,12 +130,14 @@
 
 // Manju - Declare the On_off_set_value function
 static void on_off_set_value(zb_bool_t on, zb_uint8_t endpoint_invoked);
+static void switch_send_on_off(zb_bufid_t bufid, zb_uint16_t on_off);
 
 LOG_MODULE_REGISTER(app);
 
-/* Main application customizable context.
+/** 
+ * Placeholder for the bulb context 
  * Stores all settings and static values.
- */
+ **/
 typedef struct {
 	zb_zcl_basic_attrs_ext_t         basic_attr;
 	zb_zcl_identify_attrs_t          identify_attr;
@@ -141,11 +146,21 @@ typedef struct {
 	zb_zcl_on_off_attrs_t            on_off_attr;
 	zb_zcl_level_control_attrs_t     level_control_attr;
 } bulb_device_ctx_t;
-
-/////////// DECLARATION FOR FIRST ENDPOINT - START /////////////////////////////////////
 /* Zigbee device application context storage. */
 static bulb_device_ctx_t dev_ctx;
 
+/**
+ * Placeholder for the button context
+ **/
+struct buttons_context {
+	uint32_t       state;
+	atomic_t       long_poll;
+	struct k_timer alarm;
+};
+/* Create the buttons context */
+static struct buttons_context buttons_ctx;
+
+/////////// DECLARATION FOR FIRST ENDPOINT - START /////////////////////////////////////
 /* Pointer to PWM device controlling leds with pwm signal. */
 static const struct device *led_pwm_dev;
 
@@ -303,10 +318,34 @@ ZB_AF_DECLARE_ENDPOINT_DESC(dimmable_light_ep_gpio, HA_DIMMABLE_LIGHT_ENDPOINT_G
 
 /////////// MANJU - DECLARATION FOR SECOND ENDPOINT - END /////////////////////////////////////
 
+////////// MANJU - DECLARATION FOR SWITCH ENDPOINT - START ///////////////////////////////////
+static zb_uint8_t  attr_zcl_version = ZB_ZCL_VERSION;
+static zb_uint8_t  attr_power_source = ZB_ZCL_BASIC_POWER_SOURCE_BATTERY;
+static zb_uint16_t attr_identify_time;
+
+/* Declare attribute list for Basic cluster. */
+ZB_ZCL_DECLARE_BASIC_ATTRIB_LIST(basic_attr_list_button, &attr_zcl_version, &attr_power_source);
+
+/* Declare attribute list for Identify cluster. */
+ZB_ZCL_DECLARE_IDENTIFY_ATTRIB_LIST(identify_attr_list_button, &attr_identify_time);
+
+/* Declare cluster list for Dimmer Switch device (Identify, Basic, Scenes,
+ * Groups, On Off, Level Control).
+ * Only clusters Identify and Basic have attributes.
+ */
+ZB_HA_DECLARE_DIMMER_SWITCH_CLUSTER_LIST(dimmer_button_clusters, basic_attr_list_button, identify_attr_list_button);
+
+/* Declare endpoint for Dimmer Switch device. */
+ZB_HA_DECLARE_DIMMER_SWITCH_EP(dimmer_switch_ep, HA_BUTTON_ENDPOINT, dimmer_button_clusters);
+////////// MANJU - DECLARATION FOR SWITCH ENDPOINT - END ///////////////////////////////////
+
+
 /**
  * Combine the declaration of multiple Endpoints 
  **/ 
 ZBOSS_DECLARE_DEVICE_CTX_2_EP(dimmable_light_ctx, dimmable_light_ep, dimmable_light_ep_gpio);
+
+ZB_HA_DECLARE_DIMMER_SWITCH_CTX(dimmer_switch_ctx, dimmer_switch_ep);
 
 /**
  * Declares the context of single endpoint 
@@ -322,8 +361,10 @@ ZBOSS_DECLARE_DEVICE_CTX_2_EP(dimmable_light_ctx, dimmable_light_ep, dimmable_li
  */
 static void button_changed(uint32_t button_state, uint32_t has_changed)
 {
-	// zb_ret_t zb_err_code;
+	zb_ret_t zb_err_code;
+	zb_uint16_t cmd_id;
 
+    // user_input_indicate();
 	/* Calculate bitmask of buttons that are pressed
 	 * and have changed their state.
 	 */
@@ -336,11 +377,16 @@ static void button_changed(uint32_t button_state, uint32_t has_changed)
 		if(dev_ctx.on_off_attr.on_off)
 		{
 			// on_off_set_value(ZB_FALSE);
+			cmd_id = ZB_ZCL_CMD_ON_OFF_ON_ID;
 		}
 		else
 		{
 			// on_off_set_value(ZB_TRUE);
+			cmd_id = ZB_ZCL_CMD_ON_OFF_OFF_ID;
 		}
+
+		zb_err_code = zb_buf_get_out_delayed_ext(switch_send_on_off, cmd_id, 0);
+		ZB_ERROR_CHECK(zb_err_code);
 
 		LOG_INF("Toggling Completed");
 	}
@@ -487,6 +533,28 @@ static void on_off_set_value(zb_bool_t on, zb_uint8_t ENDPOINT_INVOKED)
 		light_bulb_set_brightness(0U, ENDPOINT_INVOKED);
 	}
 }
+
+	/**@brief Function for sending ON/OFF requests to the network / co-ordinator.
+	 *
+	 * @param[in]   bufid    Non-zero reference to Zigbee stack buffer that will be
+	 *                       used to construct on/off request.
+	 * @param[in]   cmd_id   ZCL command id.
+	 */
+	static void switch_send_on_off(zb_bufid_t bufid, zb_uint16_t cmd_id)
+	{
+		LOG_INF("Send ON/OFF command: %d", cmd_id);
+		zb_uint16_t coordinator_address = 0x0000;
+
+		ZB_ZCL_ON_OFF_SEND_REQ(bufid,
+					coordinator_address,
+					ZB_APS_ADDR_MODE_16_ENDP_PRESENT,
+					HA_BUTTON_ENDPOINT,
+					HA_BUTTON_ENDPOINT,
+					ZB_AF_HA_PROFILE_ID,
+					ZB_ZCL_DISABLE_DEFAULT_RESPONSE,
+					cmd_id,
+					NULL);
+	}
 
 /**@brief Function for initializing all clusters attributes.
  */

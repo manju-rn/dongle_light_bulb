@@ -79,9 +79,9 @@ E:/nRF/projects/dongle_light_bulb/build/zephyr/soc/arm/nordic_nrf/common/CMakeFi
 E:/nRF/projects/dongle_light_bulb/build/zephyr/soc/arm/nordic_nrf/common/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/CMakeFiles/edit_cache.dir
 E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/CMakeFiles/rebuild_cache.dir
-E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/arm/nrf52840dongle_nrf52840/CMakeFiles/boards__arm__nrf52840dongle_nrf52840.dir
-E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/arm/nrf52840dongle_nrf52840/CMakeFiles/edit_cache.dir
-E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/arm/nrf52840dongle_nrf52840/CMakeFiles/rebuild_cache.dir
+E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/boards/arm/nrf52840dongle_nrf52840/CMakeFiles/boards__arm__nrf52840dongle_nrf52840.dir
+E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/boards/arm/nrf52840dongle_nrf52840/CMakeFiles/edit_cache.dir
+E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/boards/arm/nrf52840dongle_nrf52840/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build/zephyr/subsys/CMakeFiles/edit_cache.dir
 E:/nRF/projects/dongle_light_bulb/build/zephyr/subsys/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build/zephyr/subsys/debug/CMakeFiles/edit_cache.dir

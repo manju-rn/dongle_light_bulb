@@ -53,25 +53,32 @@ __devicehdl_DT_N_S_soc_S_gpio_50000000[] = { DEVICE_HANDLE_ENDS, DEVICE_HANDLE_E
 const device_handle_t __aligned(2) __attribute__((__section__(".__device_handles_pass2")))
 __devicehdl_DT_N_S_soc_S_gpio_50000300[] = { DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS };
 
-/* 9 : /soc/flash-controller@4001e000:
+/* 9 : /soc/pwm@4001c000:
+ * - (/soc)
+ * - (/soc/interrupt-controller@e000e100)
+ */
+const device_handle_t __aligned(2) __attribute__((__section__(".__device_handles_pass2")))
+__devicehdl_DT_N_S_soc_S_pwm_4001c000[] = { DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS };
+
+/* 10 : /soc/flash-controller@4001e000:
  * - (/soc)
  */
 const device_handle_t __aligned(2) __attribute__((__section__(".__device_handles_pass2")))
 __devicehdl_DT_N_S_soc_S_flash_controller_4001e000[] = { DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS };
 
-/* 10 : sysinit:
+/* 11 : sysinit:
  */
 const device_handle_t __aligned(2) __attribute__((__section__(".__device_handles_pass2")))
 __devicehdl_nrf5_154_radio[] = { DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS };
 
-/* 11 : /soc/ecb@4000e000:
+/* 12 : /soc/ecb@4000e000:
  * - (/soc)
  * - (/soc/interrupt-controller@e000e100)
  */
 const device_handle_t __aligned(2) __attribute__((__section__(".__device_handles_pass2")))
 __devicehdl_DT_N_S_soc_S_ecb_4000e000[] = { DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS, DEVICE_HANDLE_ENDS };
 
-/* 12 : /soc/temp@4000c000:
+/* 13 : /soc/temp@4000c000:
  * - (/soc)
  * - (/soc/interrupt-controller@e000e100)
  */

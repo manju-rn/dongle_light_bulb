@@ -427,6 +427,25 @@ rule C_STATIC_LIBRARY_LINKER__drivers__gpio_
 #############################################
 # Rule for compiling C files.
 
+rule C_COMPILER__drivers__pwm_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__drivers__pwm_
+  command = cmd.exe /C "$PRE_LINK && E:\nRF\v1.7.1\toolchain\opt\bin\cmake.exe -E rm -f $TARGET_FILE && E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
 rule C_COMPILER__drivers__flash_
   depfile = $DEP_FILE
   deps = gcc
@@ -476,6 +495,25 @@ rule C_COMPILER__drivers__entropy_
 # Rule for linking C static library.
 
 rule C_STATIC_LIBRARY_LINKER__drivers__entropy_
+  command = cmd.exe /C "$PRE_LINK && E:\nRF\v1.7.1\toolchain\opt\bin\cmake.exe -E rm -f $TARGET_FILE && E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__.2e.2e__nrf__lib__dk_buttons_and_leds_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__.2e.2e__nrf__lib__dk_buttons_and_leds_
   command = cmd.exe /C "$PRE_LINK && E:\nRF\v1.7.1\toolchain\opt\bin\cmake.exe -E rm -f $TARGET_FILE && E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && E:\nRF\v1.7.1\toolchain\opt\bin\arm-none-eabi-ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT

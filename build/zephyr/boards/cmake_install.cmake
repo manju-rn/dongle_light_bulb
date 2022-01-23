@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/arm/nrf52840dongle_nrf52840/cmake_install.cmake")
+  include("E:/nRF/projects/dongle_light_bulb/build/zephyr/boards/boards/arm/nrf52840dongle_nrf52840/cmake_install.cmake")
 endif()
 

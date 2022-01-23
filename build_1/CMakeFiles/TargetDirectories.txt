@@ -161,6 +161,9 @@ E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/gpio/CMakeFiles/edit_ca
 E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/gpio/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/ieee802154/CMakeFiles/edit_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/ieee802154/CMakeFiles/rebuild_cache.dir
+E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/pwm/CMakeFiles/drivers__pwm.dir
+E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/pwm/CMakeFiles/edit_cache.dir
+E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/pwm/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/sensor/CMakeFiles/edit_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/sensor/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/zephyr/drivers/sensor/grove/CMakeFiles/edit_cache.dir
@@ -187,6 +190,9 @@ E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/CMakeFiles/edit_cache.
 E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/bin/CMakeFiles/edit_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/bin/CMakeFiles/rebuild_cache.dir
+E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/dk_buttons_and_leds/CMakeFiles/..__nrf__lib__dk_buttons_and_leds.dir
+E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/dk_buttons_and_leds/CMakeFiles/edit_cache.dir
+E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/dk_buttons_and_leds/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/multithreading_lock/CMakeFiles/rebuild_cache.dir
 E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/multithreading_lock/CMakeFiles/..__nrf__lib__multithreading_lock.dir
 E:/nRF/projects/dongle_light_bulb/build_1/modules/nrf/lib/multithreading_lock/CMakeFiles/edit_cache.dir
